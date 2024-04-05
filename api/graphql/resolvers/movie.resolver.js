@@ -36,7 +36,6 @@ const movieResolver = {
         throw new Error(`Erro ao buscar os filmes: ${error.message}`);
       }
     },
-
     filterMovies: async (_, { genres, cast, director }) => {
       const filter = {};
       filter.genres = { $nin: ["Horror"], $ne: null };
@@ -48,9 +47,29 @@ const movieResolver = {
         if (director) filter.directors = { $in: director };
       }
       if (genres) filter.genres = { $in: genres, $nin: ["Horror"], $ne: null };
+      filter.fullplot = {
+        $not: {
+          $regex: /(sex|sexy|sexual|sexually|lesbian)/i,
+        },
+      };
+
       return await Movie.find(filter).sort({ "imdb.rating": -1 }).limit(100);
     },
   },
 };
 
 export default movieResolver;
+
+// filterMovies: async (_, { genres, cast, director }) => {
+//   const filter = {};
+//   filter.genres = { $nin: ["Horror"], $ne: null };
+//   filter.poster = { $ne: null };
+//   filter.plot = { $ne: null };
+
+//   if (cast || director) {
+//     if (cast) filter.cast = { $in: cast, $ne: null };
+//     if (director) filter.directors = { $in: director };
+//   }
+//   if (genres) filter.genres = { $in: genres, $nin: ["Horror"], $ne: null };
+//   return await Movie.find(filter).sort({ "imdb.rating": -1 }).limit(100);
+// },

@@ -63,9 +63,13 @@ const start = async () => {
   await server.start();
 
   app.use(
-    "/api/graphql", // Alterado para corresponder ao caminho configurado no Vercel
+    "/api/graphql",
     cors({
-      origin: "http://localhost:5173",
+      origin: [
+        "http://localhost:5173",
+        "https://aboutmovie.vercel.app/",
+        "https://movie-git-main-douglas-projects-83bb388e.vercel.app/",
+      ],
       credentials: true,
     }),
     Express.json(),
