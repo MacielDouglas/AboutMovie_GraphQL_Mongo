@@ -34,7 +34,7 @@ const start = async () => {
 
   const wsServer = new WebSocketServer({
     server: httpServer,
-    path: "/api/graphql", // Alterado para corresponder ao caminho configurado no Vercel
+    path: "/graphql",
   });
 
   const schema = makeExecutableSchema({
@@ -63,12 +63,12 @@ const start = async () => {
   await server.start();
 
   app.use(
-    "/api/graphql",
+    "/graphql",
     cors({
       origin: [
         "http://localhost:5173",
-        "https://aboutmovie.vercel.app/",
-        "https://movie-git-main-douglas-projects-83bb388e.vercel.app/",
+        "https://aboutmovie.vercel.app",
+        "https://movie-git-main-douglas-projects-83bb388e.vercel.app",
       ],
       credentials: true,
     }),
