@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { SEARCHING } from "../graphql/queries/movie.query";
 import MovieItem from "../components/MovieItem";
+import Loading from "../components/Loading";
 
 export default function Search() {
   const params = useParams();
@@ -12,7 +13,7 @@ export default function Search() {
       directors: params.directors === "null" ? null : params.directors,
     },
   });
-  if (loading) return <h1>Loading....</h1>;
+  if (loading) return <Loading />;
   if (error) return <h1>Error...</h1>;
   let movies = "";
   if (data) movies = data.filterMovies;

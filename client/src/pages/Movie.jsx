@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { MOVIE } from "../graphql/queries/movie.query";
 import { useQuery } from "@apollo/client";
+import Loading from "../components/Loading";
 
 export default function Movie() {
   const params = useParams();
@@ -10,14 +11,14 @@ export default function Movie() {
     },
   });
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Loading />;
   if (error) return <h1>Error: {error.message}</h1>;
   const { movie } = data;
 
   return (
-    <div className="max-w-6xl mx-auto flex flex-col mt-10">
-      <div className="flex flex-row">
-        <div className="flex-1 flex justify-center">
+    <div className="max-w-6xl mx-6 flex flex-col mt-10 xl:mx-auto">
+      <div className="flex flex-col lg:flex-row">
+        <div className="flex-1 flex justify-center mb-8 lg:mb-0">
           <img
             className="max-h-[600px] justify-center rounded-lg drop-shadow-3xl"
             src={movie.poster}
