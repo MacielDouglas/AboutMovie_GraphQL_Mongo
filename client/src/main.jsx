@@ -1,10 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import ReactDOM from "react-dom/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import App from "./App.jsx";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+// uri: "http://localhost:5000/api/graphql",
+const client = new ApolloClient({
+  uri: "https://movie-rho-snowy.vercel.app/api/graphql",
+  cache: new InMemoryCache(),
+  credentials: "include",
+});
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
-)
+  </ApolloProvider>
+);
