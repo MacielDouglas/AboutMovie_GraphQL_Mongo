@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { FaSearch } from "react-icons/fa";
+import movie from "../assets/AboutMovie.svg";
+import search from "../assets/search.svg";
 
 export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -9,21 +10,34 @@ export default function Header() {
     console.log(searchTerm);
   };
   return (
-    <header className="shadow-md">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+    <header className="bg-transparent z-20 relative">
+      <div className="flex justify-between mx-4 items-center max-w-6xl xl:mx-auto my-6">
         <Link to="/" className="flex items-center">
-          <p>Movie</p>
+          <img src={movie} alt="About Movie" className="w-10" />
         </Link>
-        <ul className="flex gap-4">
+
+        <form
+          onSubmit={handleSubmit}
+          className="p-2 rounded-lg flex items-center border border-zinc-200"
+        >
+          <input
+            type="text"
+            placeholder="Search movie..."
+            className="bg-transparent focus:outline-none w-24 sm:w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button>
+            <img src={search} alt="search image" className="w-5" />
+          </button>
+        </form>
+
+        <ul className="flex gap-8 font-medium text-lg text-gray-200">
           <Link to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
-              Home
-            </li>
+            <li className="hidden sm:inline">Home</li>
           </Link>
           <Link to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
-              About
-            </li>
+            <li className="hidden sm:inline hover:underline-offset-8">About</li>
           </Link>
           <Link to="/profile">
             {/* {currentUser ? (
@@ -35,25 +49,9 @@ export default function Header() {
             ) : (
               <li className=" text-slate-700 hover:underline">Login</li>
             )} */}
-            <li className="text-slate-700 hover:underline">Login</li>
+            <li className=" ">Login</li>
           </Link>
         </ul>
-        <form
-          onSubmit={handleSubmit}
-          className="bg-slate-100 p-3 rounded-lg flex items-center"
-        >
-          <input
-            type="text"
-            placeholder="Pesquisar..."
-            className="bg-transparent focus:outline-none w-24 sm:w-64"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button>
-            <p>Enviar</p>
-            {/* <FaSearch className="text-slate-600" /> */}
-          </button>
-        </form>
       </div>
     </header>
   );

@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        base_01: "#091C30",
+        base_01: "#141824",
         base_card: "#75E4B3",
       },
       dropShadow: {
