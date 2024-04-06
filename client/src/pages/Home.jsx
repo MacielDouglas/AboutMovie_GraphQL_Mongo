@@ -45,14 +45,12 @@ export default function Home() {
         <Cards movies={data?.movies} />
       </div>
       {showScrollButton && (
-        <div>
-          <img
-            src={toTop}
-            alt=""
-            className="fixed bottom-10 right-10 h-16 sm:h-20 hover:h-16 hover:cursor-pointer"
-            onClick={scrollToTop}
-          />
-        </div>
+        <img
+          src={toTop}
+          alt=""
+          className="fixed bottom-10 right-10 h-16  hover:h-12 hover:cursor-pointer"
+          onClick={scrollToTop}
+        />
       )}
     </div>
   );

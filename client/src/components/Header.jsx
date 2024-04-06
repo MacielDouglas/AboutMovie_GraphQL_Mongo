@@ -1,58 +1,157 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import movie from "../assets/AboutMovie.svg";
-import search from "../assets/search.svg";
+import searchIcon from "../assets/search.svg";
 
 export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(searchTerm);
+    setSearchTerm("");
+    // Redirecionar para a página de resultados de pesquisa
+    // history.push(`/search?term=${searchTerm}`);
   };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
-    <header className="bg-transparent z-20 relative">
-      <div className="flex justify-between mx-4 items-center max-w-6xl xl:mx-auto my-6">
+    <header className="bg-gradient-to-t from-slate-950 to-transparent shadow h-20 z-20 relative">
+      <div className="flex justify-between items-center h-full mx-4 max-w-6xl xl:mx-auto">
         <Link to="/" className="flex items-center">
           <img src={movie} alt="About Movie" className="w-10" />
         </Link>
 
-        <form
-          onSubmit={handleSubmit}
-          className="p-2 rounded-lg flex items-center border border-zinc-200"
-        >
-          <input
-            type="text"
-            placeholder="Search movie..."
-            className="bg-transparent focus:outline-none w-24 sm:w-64"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button>
-            <img src={search} alt="search image" className="w-5" />
+        {/* Ícone de menu hamburguer para dispositivos móveis */}
+        <div className="sm:hidden">
+          <button onClick={toggleModal}>
+            <svg
+              className="w-6 h-6 cursor-pointer text-gray-200"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
           </button>
-        </form>
+        </div>
 
-        <ul className="flex gap-8 font-medium text-lg text-gray-200">
+        {/* Menu para desktop */}
+        <ul className="hidden sm:flex gap-8 font-medium text-lg text-gray-200">
           <Link to="/">
-            <li className="hidden sm:inline">Home</li>
+            <li>Home</li>
           </Link>
           <Link to="/about">
-            <li className="hidden sm:inline hover:underline-offset-8">About</li>
+            <li className="hover:underline-offset-8">About</li>
           </Link>
           <Link to="/profile">
-            {/* {currentUser ? (
-              <img
-                className="rounded-full h-7 w-7 object-cover"
-                src={currentUser.avatar}
-                alt="profile"
-              />
-            ) : (
-              <li className=" text-slate-700 hover:underline">Login</li>
-            )} */}
-            <li className=" ">Login</li>
+            <li>Login</li>
           </Link>
         </ul>
       </div>
+
+      {/* Modal para dispositivos móveis */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+          onClick={toggleModal}
+        >
+          <div className="bg-white p-4 rounded-lg w-full md:w-1/2">
+            <form onSubmit={handleSubmit} className="flex items-center mb-4">
+              <input
+                type="text"
+                placeholder="Search movie..."
+                className="bg-transparent focus:outline-none w-full mr-2"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button type="submit">
+                <img src={searchIcon} alt="search" className="w-6" />
+              </button>
+            </form>
+            <ul className="flex flex-col gap-4">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/profile">Login</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
+
+// import { useState } from "react";
+// import { Link } from "react-router-dom";
+// import movie from "../assets/AboutMovie.svg";
+// import search from "../assets/search.svg";
+
+// export default function Header() {
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(searchTerm);
+//   };
+//   return (
+//     <header className="bg-gradient-to-t from-slate-950 to-transparent shadow h-20 z-20 relative">
+//       <div className="flex justify-between items-center h-full mx-4 max-w-6xl xl:mx-auto">
+//         <Link to="/" className="flex items-center">
+//           <img src={movie} alt="About Movie" className="w-10" />
+//         </Link>
+
+//         <form
+//           onSubmit={handleSubmit}
+//           className="p-2 rounded-lg flex items-center border border-zinc-200"
+//         >
+//           <input
+//             type="text"
+//             placeholder="Search movie..."
+//             className="bg-transparent focus:outline-none w-24 sm:w-64"
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//           />
+//           <button>
+//             <img src={search} alt="search image" className="w-5" />
+//           </button>
+//         </form>
+
+//         <ul className="flex gap-8 font-medium text-lg text-gray-200">
+//           <Link to="/">
+//             <li className="hidden sm:inline">Home</li>
+//           </Link>
+//           <Link to="/about">
+//             <li className="hidden sm:inline hover:underline-offset-8">About</li>
+//           </Link>
+//           <Link to="/profile">
+//             {/* {currentUser ? (
+//               <img
+//                 className="rounded-full h-7 w-7 object-cover"
+//                 src={currentUser.avatar}
+//                 alt="profile"
+//               />
+//             ) : (
+//               <li className=" text-slate-700 hover:underline">Login</li>
+//             )} */}
+//             <li className=" ">Login</li>
+//           </Link>
+//         </ul>
+//       </div>
+//     </header>
+//   );
+// }
