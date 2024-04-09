@@ -34,30 +34,30 @@ function WelcomeSection({ movies }) {
   }, []);
 
   useEffect(() => {
-    if (isImageVisible) {
-      const img = new Image();
-      img.src = movies[randomIndex]?.poster;
-      img.crossOrigin = "anonymous";
+    // if (isImageVisible) {
+    const img = new Image();
+    img.src = movies[randomIndex]?.poster;
+    img.crossOrigin = "anonymous";
 
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
 
-        const context = canvas.getContext("2d");
-        context.drawImage(img, 0, 0);
+      const context = canvas.getContext("2d");
+      context.drawImage(img, 0, 0);
 
-        const blurredImageUrl = canvas.toDataURL();
-        setBlurredImage(blurredImageUrl);
-      };
-    }
+      const blurredImageUrl = canvas.toDataURL();
+      setBlurredImage(blurredImageUrl);
+    };
+    // }
   }, [movies, randomIndex, isImageVisible]);
 
   const backgroundStyle = {
     backgroundImage: `url(${blurredImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    minHeight: "100vh",
+    // minHeight: "100vh",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -71,12 +71,12 @@ function WelcomeSection({ movies }) {
       <div
         style={backgroundStyle}
         id="back"
-        className="brightness-50 blur-sm relative inset-0 z-10 "
+        className="brightness-50 blur-sm relative inset-0 z-10 h-[500px] md:h-[600px] mmd:min-h-screen"
       ></div>
 
       {/* Elemento da frente */}
       <div
-        className="absolute text-white w-full  flex flex-col md:flex-row z-10 top-32"
+        className="absolute text-white w-full  flex flex-col md:flex-row z-10 top-44 mmd:top-24 xl:top-32"
         id="front"
       >
         <div className="flex-1 flex flex-col justify-center gap-4 ml-40 mb-8 md:mb-0">

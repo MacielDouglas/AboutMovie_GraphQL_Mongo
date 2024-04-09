@@ -36,7 +36,12 @@ export default function Movie() {
               Cast:
               {movie.cast.map((cast) => (
                 <li key={cast}>
-                  <Link to={`/search/${cast}/${null}/${null}`}>{cast}</Link>
+                  <Link
+                    to={`/search/${cast}/${null}/${null}`}
+                    className="hover:text-slate-100"
+                  >
+                    {cast}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -47,7 +52,12 @@ export default function Movie() {
               Genres:
               {movie.genres?.map((genre) => (
                 <li key={genre}>
-                  <Link to={`/search/${null}/${null}/${genre}`}>{genre}</Link>
+                  <Link
+                    to={`/search/${null}/${null}/${genre}`}
+                    className="hover:text-slate-100"
+                  >
+                    {genre}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -59,7 +69,10 @@ export default function Movie() {
             director:
             {movie.directors?.map((director) => (
               <li key={director}>
-                <Link to={`/search/${null}/${director}/${null}`}>
+                <Link
+                  to={`/search/${null}/${director}/${null}`}
+                  className="hover:text-slate-100"
+                >
                   {director}
                 </Link>
               </li>

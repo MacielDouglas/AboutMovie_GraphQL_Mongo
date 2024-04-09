@@ -63,10 +63,10 @@ export default function Header() {
       {/* Modal para dispositivos móveis */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex  items-end"
           onClick={toggleModal}
         >
-          <div className="bg-white p-4 rounded-lg w-full md:w-1/2">
+          <div className="bg-white p-4 rounded-lg w-full md:w-1/2 h-full sm:w-1/2">
             <form onSubmit={handleSubmit} className="flex items-center mb-4">
               <input
                 type="text"
