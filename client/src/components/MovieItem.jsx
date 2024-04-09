@@ -7,7 +7,7 @@ export default function MovieItem({ movie }) {
     "https://cdn-icons-png.flaticon.com/512/1695/1695213.png";
 
   return (
-    <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
+    <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px] font-roboto">
       <Link to={`/movie/${movieSlug}/${movie._id}`}>
         <img
           src={movie.poster || defaultPoster}
@@ -18,7 +18,7 @@ export default function MovieItem({ movie }) {
           }}
         />
         <div className="p-3 flex flex-col gap-2 w-full">
-          <p className="truncate text-lg font-semibold text-slate-700">
+          <p className="truncate text-lg font-semibold text-slate-700 font-poppins">
             {movie.title}
           </p>
           <div className="flex items-center gap-1">

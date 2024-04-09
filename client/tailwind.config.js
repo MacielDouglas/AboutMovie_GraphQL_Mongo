@@ -12,6 +12,11 @@ module.exports = {
       screens: {
         mmd: "850px",
       },
+      fontFamily: {
+        roboto: ["Roboto Flex", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        lobster: ["Lobster", "sans-serif"],
+      },
     },
   },
   plugins: [],
