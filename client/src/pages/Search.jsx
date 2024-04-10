@@ -107,12 +107,13 @@ export default function Search() {
           </div>
         </div>
         {showScrollButton && (
-          <img
-            src={toTop}
-            alt=""
-            className="fixed bottom-10 right-10 h-16  hover:h-12 hover:cursor-pointer"
-            onClick={scrollToTop}
-          />
+          <button onClick={scrollToTop} type="button">
+            <img
+              src={toTop}
+              alt="Scroll Button"
+              className="fixed bottom-6 right-6 h-12 md:right-12 md:bottom-10 md:h-10  hover:h-12 hover:cursor-pointer "
+            />
+          </button>
         )}
       </div>
     </div>

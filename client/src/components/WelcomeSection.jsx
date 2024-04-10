@@ -76,17 +76,17 @@ function WelcomeSection({ movies }) {
 
       {/* Elemento da frente */}
       <div
-        className="absolute text-white w-full  flex flex-col md:flex-row z-10 top-44 mmd:top-24 xl:top-32"
+        className="absolute text-white w-full  flex flex-col md:flex-row z-10 top-48 mmd:top-24 xl:top-32"
         id="front"
       >
-        <div className="flex-1 flex flex-col justify-center gap-2 ml-40 mb-8 md:mb-0">
-          <h1 className="text-6xl font-semibold mb-4 font-lobster">
+        <div className="flex-1 flex flex-col justify-center w-full text-center gap-2 mb-8 md:mb-0 mmd:text-end">
+          <h1 className="text-4xl mmd:text-6xl font-semibold mb-4 font-lobster mmd:mb-8">
             Welcome to About Films
           </h1>
-          <h3 className="mb-4 text-2xl text-neutral-300 font-poppins">
+          <h3 className="mb-4 text-xl mmd:text-2xl text-neutral-300 font-poppins">
             Here you search and find out about the best films
           </h3>
-          <p className="mb-4 text-xl text-neutral-300 font-roboto">
+          <p className="mb-4 text-sm mmd:text-xl text-neutral-300 font-roboto">
             From 1927 to 2014
           </p>
         </div>

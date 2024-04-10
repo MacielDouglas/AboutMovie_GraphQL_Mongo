@@ -31,7 +31,7 @@ export default function Card({ movie }) {
         <img
           src={movie.poster || defaultPoster}
           alt={movie.title}
-          className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300"
+          className="w-full h-60 object-cover transition-all duration-300 group-hover:h-80"
           onError={(e) => {
             e.target.src = defaultPoster;
           }}
