@@ -70,7 +70,10 @@ export default function Home() {
   return (
     <div className="-mt-24">
       <WelcomeSection movies={movies} />
-      <div className="max-w-6xl mx-auto mt-36">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-poppins text-slate-500 mt-24 mb-12 text-center">
+          Top rated films
+        </h1>
         <Cards movies={movies} />
         <div className="flex justify-center my-8">
           <button

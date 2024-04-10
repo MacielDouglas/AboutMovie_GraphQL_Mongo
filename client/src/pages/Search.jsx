@@ -40,12 +40,11 @@ export default function Search() {
   if (error) return <h1>Error...</h1>;
 
   let movies = data ? data.filterMovies : [];
-
   return (
-    <div className="container mx-auto px-4  text-zinc-400">
+    <div className="container mx-auto px-4  text-zinc-400 mt-6">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-        <div className="lg:border-r border-gray-200 pb-4">
-          <form className="space-y-4">
+        <div className="lg:border-r border-gray-200 pb-4 ">
+          <form className="space-y-4 mr-5">
             <div>
               <label htmlFor="searchCast" className="block font-semibold">
                 Search cast:

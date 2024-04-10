@@ -63,11 +63,11 @@ export default function Header() {
       {/* Modal para dispositivos móveis */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex  items-end"
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex  justify-end"
           onClick={toggleModal}
         >
-          <div className="bg-white p-4 rounded-lg w-full md:w-1/2 h-full sm:w-1/2">
-            <form onSubmit={handleSubmit} className="flex items-center mb-4">
+          <div className="bg-white p-6 rounded-lg md:w-1/2 h-full sm:w-1/2">
+            <form onSubmit={handleSubmit} className="flex items-center mb-6">
               <input
                 type="text"
                 placeholder="Search movie..."
@@ -79,7 +79,7 @@ export default function Header() {
                 <img src={searchIcon} alt="search" className="w-6" />
               </button>
             </form>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-4 font-poppins text-xl">
               <li>
                 <Link to="/">Home</Link>
               </li>

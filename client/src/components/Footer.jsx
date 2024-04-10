@@ -3,7 +3,7 @@ import movie from "../assets/AboutMovie.svg";
 
 export default function Footer() {
   return (
-    <footer className="mt-28 bg-slate-700 text-slate-200">
+    <footer className="mt-14 bg-slate-700 text-slate-200">
       <div className="flex flex-wrap gap-4 justify-center items-center max-w-7xl mx-auto p-20 md:justify-between">
         <Link to="/" className="">
           <img className="w-14" src={movie} alt="image logo" />
