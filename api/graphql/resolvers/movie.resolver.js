@@ -13,9 +13,11 @@ const movieResolver = {
         throw new Error(`Error getting movie: ${error.message}`);
       }
     },
-
-    movies: async () => {
+    movies: async (page = 1, pageSize = 12) => {
       try {
+        const skip =
+          (parseInt(pageSize.page) - 1) * parseInt(pageSize.pageSize);
+
         const movies = await Movie.find({
           poster: { $ne: null },
           title: { $not: { $regex: /sexual/i } },
@@ -29,8 +31,10 @@ const movieResolver = {
           ],
         })
           .sort({ "imdb.rating": -1 })
-          .limit(100)
+          .skip(skip)
+          .limit(pageSize.pageSize)
           .exec();
+
         return movies;
       } catch (error) {
         throw new Error(`Erro ao buscar os filmes: ${error.message}`);
@@ -59,17 +63,3 @@ const movieResolver = {
 };
 
 export default movieResolver;
-
-// filterMovies: async (_, { genres, cast, director }) => {
-//   const filter = {};
-//   filter.genres = { $nin: ["Horror"], $ne: null };
-//   filter.poster = { $ne: null };
-//   filter.plot = { $ne: null };
-
-//   if (cast || director) {
-//     if (cast) filter.cast = { $in: cast, $ne: null };
-//     if (director) filter.directors = { $in: director };
-//   }
-//   if (genres) filter.genres = { $in: genres, $nin: ["Horror"], $ne: null };
-//   return await Movie.find(filter).sort({ "imdb.rating": -1 }).limit(100);
-// },

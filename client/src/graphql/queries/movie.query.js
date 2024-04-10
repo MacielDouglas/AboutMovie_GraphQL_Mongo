@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const MOVIES = gql`
-  query MOVIES {
-    movies {
+  query MOVIES($page: Int, $pageSize: Int) {
+    movies(page: $page, pageSize: $pageSize) {
       _id
       title
       plot

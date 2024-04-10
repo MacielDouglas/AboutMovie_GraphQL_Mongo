@@ -64,7 +64,7 @@ type Movie {
   scalar Date
 
   type Query {
-    movies: [Movie]
+    movies(page: Int, pageSize: Int): [Movie]
     movie(id: ID!): Movie
     filterMovies(genres: [String], cast: [String], director: [String]): [Movie]
   }

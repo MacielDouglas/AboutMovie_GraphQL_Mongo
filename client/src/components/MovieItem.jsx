@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import slugify from "slugify";
+import { PropTypes } from "prop-types";
 
 export default function MovieItem({ movie }) {
   const movieSlug = slugify(movie.title, { lower: true });
@@ -40,3 +41,7 @@ export default function MovieItem({ movie }) {
     </div>
   );
 }
+
+MovieItem.propTypes = {
+  movie: PropTypes.array.isRequired,
+};

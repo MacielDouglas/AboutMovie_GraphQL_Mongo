@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 function WelcomeSection({ movies }) {
-  const [randomIndex, setRandomIndex] = useState(33);
+  const [randomIndex, setRandomIndex] = useState(11);
   const [blurredImage, setBlurredImage] = useState("");
   const [isImageVisible, setIsImageVisible] = useState(false);
 
@@ -87,7 +87,7 @@ function WelcomeSection({ movies }) {
             Here you search and find out about the best films
           </h3>
           <p className="mb-4 text-xl text-neutral-300 font-roboto">
-            From 1930 to 2015
+            From 1927 to 2014
           </p>
         </div>
         {isImageVisible && (

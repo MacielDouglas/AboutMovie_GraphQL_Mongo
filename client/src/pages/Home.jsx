@@ -7,8 +7,19 @@ import WelcomeSection from "../components/WelcomeSection";
 import toTop from "../assets/backToTop.svg";
 
 export default function Home() {
-  const { data, loading, error } = useQuery(MOVIES);
+  const { loading, error, data, fetchMore } = useQuery(MOVIES, {
+    variables: { page: 1, pageSize: 12 },
+  });
+
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [page, setPage] = useState(1);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setMovies(data.movies);
+    }
+  }, [data]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +39,25 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const loadMoreMovies = () => {
+    fetchMore({
+      variables: { page: page + 1, pageSize: 12 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          movies: [...prev.movies, ...fetchMoreResult.movies],
+        };
+      },
+    })
+      .then((result) => {
+        setMovies(result.data.movies.slice((page - 1) * 12, page * 12));
+        setPage(page + 1);
+      })
+      .catch((error) => {
+        console.error("Error loading more movies:", error);
+      });
+  };
   if (loading) return <Loading />;
   if (error)
     return (
@@ -37,12 +67,19 @@ export default function Home() {
         </h1>
       </div>
     );
-
   return (
     <div className="-mt-24">
-      <WelcomeSection movies={data?.movies} />
+      <WelcomeSection movies={movies} />
       <div className="max-w-6xl mx-auto mt-36">
-        <Cards movies={data?.movies} />
+        <Cards movies={movies} />
+        <div className="flex justify-center my-8">
+          <button
+            onClick={loadMoreMovies}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Load More
+          </button>
+        </div>
       </div>
       {showScrollButton && (
         <img
