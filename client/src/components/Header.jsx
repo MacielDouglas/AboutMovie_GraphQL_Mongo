@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import movie from "../assets/AboutMovie.svg";
 import searchIcon from "../assets/search.svg";
-import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Header() {
+  // const path = useLocation().pathname;
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const location = useLocation();
-  // const path = useLocation().pathname;
 
   const navigate = useNavigate();
 
@@ -22,11 +21,9 @@ export default function Header() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("title", searchTerm);
     const searchQuery = urlParams.toString();
-
-    // navigate(`/search/${null}/${null}/${null}/${searchTerm}`);
     navigate(`/search?${searchQuery}`);
   };
 
