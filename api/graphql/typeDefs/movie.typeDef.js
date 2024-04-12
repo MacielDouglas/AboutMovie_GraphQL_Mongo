@@ -66,7 +66,7 @@ type Movie {
   type Query {
     movies(page: Int, pageSize: Int): [Movie]
     movie(id: ID!): Movie
-    filterMovies(genres: [String], cast: [String], director: [String]): [Movie]
+    filterMovies(genres: [String], cast: [String], director: [String], title: [String]): [Movie]
   }
 `;
 

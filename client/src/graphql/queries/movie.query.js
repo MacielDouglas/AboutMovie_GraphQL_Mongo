@@ -60,8 +60,18 @@ export const MOVIE = gql`
 `;
 
 export const SEARCHING = gql`
-  query SEARCH($cast: [String], $genres: [String], $directors: [String]) {
-    filterMovies(cast: $cast, genres: $genres, director: $directors) {
+  query SEARCH(
+    $cast: [String]
+    $genres: [String]
+    $directors: [String]
+    $title: [String]
+  ) {
+    filterMovies(
+      cast: $cast
+      genres: $genres
+      director: $directors
+      title: $title
+    ) {
       _id
       title
       genres

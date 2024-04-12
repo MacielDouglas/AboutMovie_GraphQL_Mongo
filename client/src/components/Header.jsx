@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import movie from "../assets/AboutMovie.svg";
 import searchIcon from "../assets/search.svg";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
+  // const path = useLocation().pathname;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("title");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchTerm);
-    setSearchTerm("");
-    // Redirecionar para a página de resultados de pesquisa
-    // history.push(`/search?term=${searchTerm}`);
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("title", searchTerm);
+    const searchQuery = urlParams.toString();
+
+    // navigate(`/search/${null}/${null}/${null}/${searchTerm}`);
+    navigate(`/search?${searchQuery}`);
   };
 
   const toggleModal = () => {
@@ -47,6 +62,21 @@ export default function Header() {
         </div>
 
         {/* Menu para desktop */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-slate-100 p-3 rounded-lg flex items-center"
+        >
+          <input
+            type="text"
+            placeholder="Search Title..."
+            className="bg-transparent focus:outline-none w-24 sm:w-64 hidden lg:inline"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="w-6 h-6">
+            <img src={searchIcon} alt="search button" />
+          </button>
+        </form>
         <ul className="hidden sm:flex gap-8 font-medium text-lg text-gray-200">
           <Link to="/">
             <li>Home</li>

@@ -17,7 +17,11 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/movie/:movieSlug/:movieId" element={<Movie />} />
-          <Route path="/search/:cast/:directors/:genres" element={<Search />} />
+          <Route path="/search" element={<Search />} />
+          {/* <Route
+            path="/search/:cast/:directors/:genres/:title"
+            element={<Search />}
+          /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

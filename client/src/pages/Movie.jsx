@@ -39,7 +39,7 @@ export default function Movie() {
               {movie.cast.map((cast) => (
                 <li key={cast}>
                   <Link
-                    to={`/search/${cast}/${null}/${null}`}
+                    to={`/search/${cast}/${null}/${null}/${null}`}
                     className="hover:text-slate-100"
                   >
                     {cast}
@@ -55,7 +55,7 @@ export default function Movie() {
               {movie.genres?.map((genre) => (
                 <li key={genre}>
                   <Link
-                    to={`/search/${null}/${null}/${genre}`}
+                    to={`/search/${null}/${null}/${genre}/${null}`}
                     className="hover:text-slate-100"
                   >
                     {genre}
@@ -72,7 +72,7 @@ export default function Movie() {
             {movie.directors?.map((director) => (
               <li key={director}>
                 <Link
-                  to={`/search/${null}/${director}/${null}`}
+                  to={`/search/${null}/${director}/${null}/${null}`}
                   className="hover:text-slate-100"
                 >
                   {director}

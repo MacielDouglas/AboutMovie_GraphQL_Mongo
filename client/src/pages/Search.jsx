@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { SEARCHING } from "../graphql/queries/movie.query";
 import MovieItem from "../components/MovieItem";
 import Loading from "../components/Loading";
@@ -7,12 +7,39 @@ import { useEffect, useState } from "react";
 import toTop from "../assets/backToTop.svg";
 
 export default function Search() {
-  const params = useParams();
+  // const params = useParams();
+  const location = useLocation();
+  const [titleInput, setTitleInput] = useState("");
+  const [castInput, setCastInput] = useState("");
+  const [directorInput, setDirectorInput] = useState("");
+  const [genresInput, setGenresInput] = useState("");
+
+  const [sidebarData, setSidebarData] = useState({
+    title: "",
+    cast: "",
+    director: "",
+    genres: "",
+  });
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const type = queryParams.toString().split("=")[0];
+    const message = queryParams
+      .toString()
+      .slice(queryParams.toString().indexOf("=") + 1)
+      .replace(/\+/g, " ");
+
+    if (type === "title" && type.title !== "") {
+      setSidebarData({ title: message });
+    }
+  }, [location.search]);
+
   const { data, loading, error } = useQuery(SEARCHING, {
     variables: {
-      cast: params.cast === "null" ? null : params.cast,
-      genres: params.genres === "null" ? null : params.genres,
-      directors: params.directors === "null" ? null : params.directors,
+      cast: sidebarData.cast,
+      genres: sidebarData.genres,
+      directors: sidebarData.director,
+      title: sidebarData.title,
     },
   });
 
@@ -36,6 +63,38 @@ export default function Search() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    if (e.target.id === "title") {
+      setTitleInput(e.target.value);
+    }
+    if (e.target.id === "cast") {
+      setCastInput(e.target.value);
+    }
+    if (e.target.id === "director") {
+      setDirectorInput(e.target.value);
+    }
+    if (e.target.id === "genres") {
+      setGenresInput(e.target.value);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams();
+    urlParams.set("cast", castInput);
+    urlParams.set("title", titleInput);
+    urlParams.set("director", directorInput);
+    urlParams.set("genres", genresInput);
+
+    setSidebarData({
+      cast: castInput,
+      title: titleInput,
+      director: directorInput,
+      genres: genresInput,
+    });
+  };
+
   if (loading) return <Loading />;
   if (error) return <h1>Error...</h1>;
 
@@ -44,16 +103,31 @@ export default function Search() {
     <div className="container mx-auto px-4  text-zinc-400 mt-6">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div className="lg:border-r border-gray-200 pb-4 ">
-          <form className="space-y-4 mr-5">
+          <form className="space-y-4 mr-5" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="searchTitle" className="block font-semibold">
+                Search title:
+              </label>
+              <input
+                type="text"
+                id="title"
+                placeholder="Search title..."
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                value={titleInput}
+                onChange={handleChange}
+              />
+            </div>
             <div>
               <label htmlFor="searchCast" className="block font-semibold">
                 Search cast:
               </label>
               <input
                 type="text"
-                id="searchCast"
+                id="cast"
                 placeholder="Search cast..."
                 className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                value={castInput}
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -62,27 +136,46 @@ export default function Search() {
               </label>
               <input
                 type="text"
-                id="searchDirector"
-                placeholder="Search director..."
+                id="director"
+                placeholder="Search cast..."
                 className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                value={directorInput}
+                onChange={handleChange}
               />
             </div>
-            <div>
-              <label htmlFor="genres" className="block font-semibold">
-                Filtrar:
-              </label>
+
+            <div className="flex items-center gap-2">
+              <label className="font-semibold">Genres filter:</label>
               <select
                 defaultValue={"all"}
                 id="genres"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                className="border rounded-lg p-3"
+                onChange={handleChange}
+                value={genresInput}
               >
-                <option value="all">All</option>
+                <option value="">All</option>
                 <option value="Action">Action</option>
-                {/* Adicione as opções restantes aqui */}
+                <option value="Adventure">Adventure</option>
+                <option value="Animation">Animation</option>
+                <option value="Biography">Biography</option>
+                <option value="Crime">Crime</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Family">Family</option>
+                <option value="Musical">Musical</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Romance">Romance</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Short">Short</option>
+                <option value="Thriller">Thriller</option>
+                <option value="War">War</option>
+                <option value="Western">Western</option>
               </select>
             </div>
             <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-              Pesquisar
+              Search
             </button>
           </form>
         </div>
