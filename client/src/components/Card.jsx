@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import slugify from "slugify";
+import poster from "../assets/movie-torn-svgrepo-com.svg";
 
 export default function Card({ movie }) {
   const [shortenedPlot, setShortenedPlot] = useState(movie.plot);
   const [shortenedTitle, setShortenedTitle] = useState(movie.title);
-  const defaultPoster =
-    "https://cdn-icons-png.flaticon.com/512/1695/1695213.png";
 
   useEffect(() => {
     if (movie.plot.length > 100) {
@@ -29,11 +28,11 @@ export default function Card({ movie }) {
     <Link className="h-[560px]" to={`/movie/${movieSlug}/${movie._id}`}>
       <div className="relative w-full h-[380px] bg-gradient-to-t from-neutral-600 to-neutral-100 text-stone-900 shadow-md rounded-lg overflow-hidden flex flex-col group">
         <img
-          src={movie.poster || defaultPoster}
+          src={movie.poster || poster}
           alt={movie.title}
           className="w-full h-60 object-cover transition-all duration-300 group-hover:h-80"
           onError={(e) => {
-            e.target.src = defaultPoster;
+            e.target.src = poster;
           }}
         />
         <div className="p-4 flex-1 relative z-20">
