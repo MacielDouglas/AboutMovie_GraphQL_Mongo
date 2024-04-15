@@ -84,7 +84,7 @@ export default function Header() {
           <Link to="/search">
             <li className="hover:underline-offset-8">Search</li>
           </Link>
-          <Link to="/profile">
+          <Link to="/login">
             <li>Login</li>
           </Link>
         </ul>
@@ -96,31 +96,24 @@ export default function Header() {
           className="fixed inset-0 bg-black bg-opacity-50 z-50 flex  justify-end"
           onClick={toggleModal}
         >
-          <div className="bg-white p-6 rounded-lg md:w-1/2 h-full sm:w-1/2">
-            {/* <form onSubmit={handleSubmit} className="flex items-center mb-6">
-              <input
-                type="text"
-                placeholder="Search movie..."
-                className="bg-transparent focus:outline-none w-full mr-2"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <button type="submit">
-                <img src={searchIcon} alt="search" className="w-6" />
-              </button>
-            </form> */}
-            <ul className="flex flex-col gap-4 font-poppins text-xl">
+          <div className="bg-white p-6 rounded-l-lg  h-full w-1/2 flex justify-center">
+            <ul className="flex flex-col gap-4 font-poppins text-xl w-full">
               <li>
                 <Link to="/">Home</Link>
               </li>
+              <hr />
               <li>
                 <Link to="/about">About</Link>
               </li>
+              <hr />
               <li>
                 <Link to="/search">Search</Link>
               </li>
-              <li>
-                <Link to="/profile">Login</Link>
+              <hr />
+              <li className="text-center">
+                <Link to="/login" className="hover:font-semibold">
+                  Login
+                </Link>
               </li>
             </ul>
           </div>
