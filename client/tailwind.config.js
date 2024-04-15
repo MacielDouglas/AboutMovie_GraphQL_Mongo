@@ -5,6 +5,8 @@ module.exports = {
       colors: {
         base_01: "#141824",
         base_card: "#75E4B3",
+        button_one: "#1d7874",
+        button_two: "#b5dead",
       },
       dropShadow: {
         "3xl": "0 25px 25px rgba(0, 0, 0, 0.35)",

@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import movie from "../assets/AboutMovie.svg";
-import searchIcon from "../assets/search.svg";
+// import searchIcon from "../assets/search.svg";
 
 export default function Header() {
   // const path = useLocation().pathname;
-  const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState("");
+  // const location = useLocation();
+  // const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get("title");
-    if (searchTermFromUrl) {
-      setSearchTerm(searchTermFromUrl);
-    }
-  }, [location.search]);
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(location.search);
+  //   const searchTermFromUrl = urlParams.get("title");
+  //   if (searchTermFromUrl) {
+  //     setSearchTerm(searchTermFromUrl);
+  //   }
+  // }, [location.search]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("title", searchTerm);
-    const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   urlParams.set("title", searchTerm);
+  //   const searchQuery = urlParams.toString();
+  //   navigate(`/search?${searchQuery}`);
+  // };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -59,27 +59,30 @@ export default function Header() {
         </div>
 
         {/* Menu para desktop */}
-        <form
+        {/* <form
           onSubmit={handleSubmit}
-          className="bg-slate-100 p-3 rounded-lg flex items-center"
+          className="bg-slate-100 p-3 rounded-lg items-center hidden sm:block"
         >
           <input
             type="text"
             placeholder="Search Title..."
-            className="bg-transparent focus:outline-none w-24 sm:w-64 hidden lg:inline"
+            className="bg-transparent focus:outline-none  w-20 sm:w-40 lg:w-52 xl:w-64 lg:inline"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="w-6 h-6">
+          <button className="w-5 h-5 ">
             <img src={searchIcon} alt="search button" />
           </button>
-        </form>
+        </form> */}
         <ul className="hidden sm:flex gap-8 font-medium text-lg text-gray-200">
           <Link to="/">
             <li>Home</li>
           </Link>
           <Link to="/about">
             <li className="hover:underline-offset-8">About</li>
+          </Link>
+          <Link to="/search">
+            <li className="hover:underline-offset-8">Search</li>
           </Link>
           <Link to="/profile">
             <li>Login</li>
@@ -94,7 +97,7 @@ export default function Header() {
           onClick={toggleModal}
         >
           <div className="bg-white p-6 rounded-lg md:w-1/2 h-full sm:w-1/2">
-            <form onSubmit={handleSubmit} className="flex items-center mb-6">
+            {/* <form onSubmit={handleSubmit} className="flex items-center mb-6">
               <input
                 type="text"
                 placeholder="Search movie..."
@@ -105,13 +108,16 @@ export default function Header() {
               <button type="submit">
                 <img src={searchIcon} alt="search" className="w-6" />
               </button>
-            </form>
+            </form> */}
             <ul className="flex flex-col gap-4 font-poppins text-xl">
               <li>
                 <Link to="/">Home</Link>
               </li>
               <li>
                 <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/search">Search</Link>
               </li>
               <li>
                 <Link to="/profile">Login</Link>

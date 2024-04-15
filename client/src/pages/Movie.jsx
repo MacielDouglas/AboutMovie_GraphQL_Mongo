@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { MOVIE } from "../graphql/queries/movie.query";
 import Loading from "../components/Loading";
 import poster from "../assets/movie-torn-svgrepo-com.svg";
+import Comments from "../components/Comments";
 
 export default function Movie() {
   const params = useParams();
@@ -41,11 +42,6 @@ export default function Movie() {
               e.target.src = poster;
             }}
           />
-          {/* <img
-            className="max-h-[600px] justify-center rounded-lg drop-shadow-3xl"
-            src={movie.poster}
-            alt={`movie image: ${movie.title}`}
-          /> */}
         </div>
         <div className="flex-1 flex flex-col  gap-3 text-stone-500 font-roboto">
           <h1 className="text-center text-6xl font-bold p-5 mb-4 text-stone-400 font-poppins">
@@ -100,6 +96,7 @@ export default function Movie() {
               </li>
             ))}
           </ul>
+          <Comments id={movie._id} year={movie.year} />
         </div>
       </div>
     </div>

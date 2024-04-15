@@ -71,6 +71,26 @@ export default function Search() {
     navigate(`/search?${searchQuery}`);
   };
 
+  const handleClear = () => {
+    console.log("clear");
+    const urlParams = new URLSearchParams();
+    setSearchParams({
+      title: "",
+      cast: "",
+      directors: "",
+      genres: "",
+    });
+    searchMovies({
+      variables: searchParams,
+    });
+    urlParams.set("title", "");
+    urlParams.set("cast", "");
+    urlParams.set("directors", "");
+    urlParams.set("genres", "");
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
+
   return (
     <div className="container mx-auto px-4 text-zinc-400 mt-6">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
@@ -173,10 +193,19 @@ export default function Search() {
                 <option value="Western">Western</option>
               </select>
             </div>
-            <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+
+            <button className="w-full bg-gradient-to-t from-teal-600 to-button_one text-white py-2 px-4 rounded-md hover:bg-gradient-to-t hover:from-button_one hover:to-teal-600">
               Search
             </button>
           </form>
+          <div className="mr-5">
+            <button
+              className="w-full mt-4 bg-gradient-to-t from-button_two to-amber-100  text-black py-2 px-4 rounded-md hover:bg-gradient-to-t hover:from-amber-100 hover:to-button_two"
+              onClick={handleClear}
+            >
+              Clear
+            </button>
+          </div>
         </div>
 
         <div className="col-span-1 lg:col-span-3">
