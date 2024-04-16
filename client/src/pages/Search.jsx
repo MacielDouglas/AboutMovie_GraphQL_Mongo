@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { SEARCHING } from "../graphql/queries/movie.query";
 import MovieItem from "../components/MovieItem";
 import Loading from "../components/Loading";
@@ -18,15 +18,6 @@ export default function Search() {
     cast: queryParams.get("cast") || "",
     directors: queryParams.get("directors") || "",
     genres: queryParams.get("genres") || "",
-  });
-
-  // Consulta que é executada apenas quando o componente é montado
-  const {
-    data: immediateData,
-    loading: immediateLoading,
-    error: immediateError,
-  } = useQuery(SEARCHING, {
-    variables: searchParams,
   });
 
   // Consulta que é executada apenas quando é chamada explicitamente

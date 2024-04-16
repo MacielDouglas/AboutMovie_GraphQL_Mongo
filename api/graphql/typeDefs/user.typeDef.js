@@ -5,10 +5,29 @@ type User {
     username: String!
     email: String!
     password: String!
+    isAdmin: Boolean!
 }
 
 type Query {
-    login(username: String!, password: String!): User
+    login(email: String!, password: String!): LoginResponse!
+    logoutUser: LogoutResponse!
+}
+
+type Mutation {
+    registerUser(username: String!, email: String!, password: String!): User!
+}
+
+type LoginResponse {
+    token: String!
+    id: ID!
+    username: String!
+    email: String!
+    isAdmin: Boolean!
+}
+
+type LogoutResponse {
+  success: Boolean!
+  message: String!
 }
 `;
 

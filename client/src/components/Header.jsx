@@ -1,35 +1,16 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import movie from "../assets/AboutMovie.svg";
-// import searchIcon from "../assets/search.svg";
+import { useAuth } from "../hooks/AuthProvider";
 
 export default function Header() {
-  // const path = useLocation().pathname;
-  // const location = useLocation();
-  // const [searchTerm, setSearchTerm] = useState("");
+  const { isLoggedIn, logOff, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const urlParams = new URLSearchParams(location.search);
-  //   const searchTermFromUrl = urlParams.get("title");
-  //   if (searchTermFromUrl) {
-  //     setSearchTerm(searchTermFromUrl);
-  //   }
-  // }, [location.search]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   urlParams.set("title", searchTerm);
-  //   const searchQuery = urlParams.toString();
-  //   navigate(`/search?${searchQuery}`);
-  // };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+  console.log(user);
 
   return (
     <header className="bg-gradient-to-t from-slate-950 to-transparent shadow h-20 z-20 relative font-poppins">
@@ -59,21 +40,6 @@ export default function Header() {
         </div>
 
         {/* Menu para desktop */}
-        {/* <form
-          onSubmit={handleSubmit}
-          className="bg-slate-100 p-3 rounded-lg items-center hidden sm:block"
-        >
-          <input
-            type="text"
-            placeholder="Search Title..."
-            className="bg-transparent focus:outline-none  w-20 sm:w-40 lg:w-52 xl:w-64 lg:inline"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button className="w-5 h-5 ">
-            <img src={searchIcon} alt="search button" />
-          </button>
-        </form> */}
         <ul className="hidden sm:flex gap-8 font-medium text-lg text-gray-200">
           <Link to="/">
             <li>Home</li>
@@ -84,9 +50,21 @@ export default function Header() {
           <Link to="/search">
             <li className="hover:underline-offset-8">Search</li>
           </Link>
-          <Link to="/login">
-            <li>Login</li>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <p>{user?.username}</p>
+              <button
+                onClick={logOff}
+                className="text-red-500 hover:text-red-400"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login">
+              <li>Login</li>
+            </Link>
+          )}
         </ul>
       </div>
 
