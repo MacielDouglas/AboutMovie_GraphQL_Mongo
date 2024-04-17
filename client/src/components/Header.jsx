@@ -88,11 +88,22 @@ export default function Header() {
                 <Link to="/search">Search</Link>
               </li>
               <hr />
-              <li className="text-center">
-                <Link to="/login" className="hover:font-semibold">
-                  Login
+              {isLoggedIn ? (
+                <>
+                  <p>{user?.username}</p>
+                  <hr />
+                  <button
+                    onClick={logOff}
+                    className="text-red-500 hover:text-red-400"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link to="/login">
+                  <li>Login</li>
                 </Link>
-              </li>
+              )}
             </ul>
           </div>
         </div>

@@ -101,6 +101,22 @@ const movieResolver = {
       return await Movie.find(filter).sort({ "imdb.rating": -1 }).limit(100);
     },
   },
+
+  Mutation: {
+    newMovie: async (_, { input }) => {
+      try {
+        // Cria um novo objeto do tipo Movie com os dados fornecidos
+        const newMovie = new Movie(input);
+
+        // Salva o novo filme no banco de dados
+        const savedMovie = await newMovie.save();
+
+        return savedMovie;
+      } catch (error) {
+        throw new Error(`Erro ao criar um novo filme: ${error.message}`);
+      }
+    },
+  },
 };
 
 export default movieResolver;
