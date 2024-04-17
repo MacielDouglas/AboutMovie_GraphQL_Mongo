@@ -18,7 +18,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-10 md:flex-row md:justify-between my-10 lg:mx-3 font-roboto text-slate-400">
           <div className="flex flex-col gap-2">
-            <p className="font-poppins font-medium text-stone-300">About</p>
+            <p className="font-poppins font-medium text-stone-300">ABOUT</p>
             <Link
               to="https://macield.vercel.app/"
               target="_blank"
@@ -30,9 +30,7 @@ export default function Footer() {
           </div>
           <hr />
           <div>
-            <p className="font-poppins font-medium text-stone-300">
-              Conheça melhor
-            </p>
+            <p className="font-poppins font-medium text-stone-300">FOLLOW US</p>
             <Link
               className="hover:text-stone-200"
               to="https://github.com/MacielDouglas"
@@ -46,7 +44,7 @@ export default function Footer() {
 
           <div className="flex flex-col">
             <p className="mb-2 font-poppins font-medium text-stone-300">
-              Discover my other projects{" "}
+              DISCOVER MY PROJECTS{" "}
             </p>
             <div className="flex flex-col gap-2">
               <Link
@@ -66,21 +64,32 @@ export default function Footer() {
                 {" "}
                 Café Bourbon
               </Link>
+              <Link
+                to="https://olibike.web.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-stone-200"
+              >
+                {" "}
+                #Olibike
+              </Link>
             </div>
           </div>
         </div>
         <hr />
         <div className="flex flex-col gap-10 md:flex-row md:justify-between my-10 lg:mx-3">
           <div className="flex gap-2">
-            <p>© {`${new Date().getFullYear()}`}</p>
-            <Link
-              to="https://macield.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-stone-100"
-            >
-              Maciel D.
-            </Link>
+            <p>
+              © {`${new Date().getFullYear()}`}{" "}
+              <Link
+                to="https://macield.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-stone-100"
+              >
+                Maciel D.
+              </Link>
+            </p>
           </div>
           <div className="hidden md:block">
             <p className="text-center text-wrap">

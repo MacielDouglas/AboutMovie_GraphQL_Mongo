@@ -78,7 +78,7 @@ export default function Home() {
         <div className="flex justify-center my-8">
           <button
             onClick={loadMoreMovies}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="w-48 bg-gradient-to-t from-teal-600 to-button_one text-white py-2 px-4 rounded-md hover:bg-gradient-to-t hover:from-button_one hover:to-teal-600 font-bold"
           >
             Load More
           </button>
