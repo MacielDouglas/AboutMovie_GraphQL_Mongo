@@ -42,7 +42,7 @@ Access the web page [here](https://aboutmovie.vercel.app/).
 
 ## Autor / Author
 
-[Seu Nome / Your Name]
+Douglas Maciel
 
 ## Licença / License
 
