@@ -42,13 +42,13 @@ export default function Header() {
         {/* Menu para desktop */}
         <ul className="hidden sm:flex gap-8 font-medium text-lg text-gray-200">
           <Link to="/">
-            <li>Home</li>
+            <li className="hover:text-gray-500">Home</li>
           </Link>
           <Link to="/about">
-            <li className="hover:underline-offset-8">About</li>
+            <li className="hover:text-gray-500">About</li>
           </Link>
           <Link to="/search">
-            <li className="hover:underline-offset-8">Search</li>
+            <li className="hover:text-gray-500">Search</li>
           </Link>
           {isLoggedIn ? (
             <>
@@ -62,7 +62,7 @@ export default function Header() {
             </>
           ) : (
             <Link to="/login">
-              <li>Login</li>
+              <li className="hover:text-gray-500">Login</li>
             </Link>
           )}
         </ul>
@@ -77,15 +77,21 @@ export default function Header() {
           <div className="bg-white p-6 rounded-l-lg  h-full w-1/2 flex justify-center">
             <ul className="flex flex-col gap-4 font-poppins text-xl w-full">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="hover:underline">
+                  Home
+                </Link>
               </li>
               <hr />
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/about" className="hover:underline">
+                  About
+                </Link>
               </li>
               <hr />
               <li>
-                <Link to="/search">Search</Link>
+                <Link to="/search" className="hover:underline">
+                  Search
+                </Link>
               </li>
               <hr />
               {isLoggedIn ? (
@@ -101,7 +107,7 @@ export default function Header() {
                 </>
               ) : (
                 <Link to="/login">
-                  <li>Login</li>
+                  <li className="hover:underline">Login</li>
                 </Link>
               )}
             </ul>
