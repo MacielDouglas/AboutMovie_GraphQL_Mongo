@@ -51,7 +51,6 @@ const movieResolver = {
       filter.poster = { $ne: null };
       filter.plot = { $ne: null };
 
-      // Convertendo o título
       if (title) {
         const formattedTitle = title[0]
           .toLowerCase()
@@ -105,10 +104,7 @@ const movieResolver = {
   Mutation: {
     newMovie: async (_, { input }) => {
       try {
-        // Cria um novo objeto do tipo Movie com os dados fornecidos
         const newMovie = new Movie(input);
-
-        // Salva o novo filme no banco de dados
         const savedMovie = await newMovie.save();
 
         return savedMovie;
