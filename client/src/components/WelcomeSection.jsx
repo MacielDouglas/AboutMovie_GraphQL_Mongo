@@ -80,8 +80,11 @@ function WelcomeSection({ movies }) {
         id="front"
       >
         <div className="flex-1 flex flex-col justify-center w-full text-center gap-2 mb-8 md:mb-0 mmd:text-end">
-          <h1 className="text-4xl mmd:text-6xl font-semibold mb-4 font-lobster mmd:mb-8">
-            Welcome to About Films
+          <h1 className="text-4xl mmd:text-4xl  mb-4 font-roboto mmd:mb-8 flex-wrap text-neutral-300">
+            Welcome to{" "}
+            <span className="text-6xl font-nothing_you font-semibold text-white whitespace-nowrap">
+              About Movie
+            </span>
           </h1>
           <h3 className="mb-4 text-xl mmd:text-2xl text-neutral-300 font-poppins">
             Here you search and find out about the best films

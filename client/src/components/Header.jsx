@@ -13,7 +13,7 @@ export default function Header() {
   console.log(user);
 
   return (
-    <header className="bg-gradient-to-t from-slate-950 to-transparent shadow h-20 z-20 relative font-poppins">
+    <header className="bg-gradient-to-t from-slate-950 to-slate-700 shadow h-20 z-20 relative font-poppins">
       <div className="flex justify-between items-center h-full mx-4 max-w-6xl xl:mx-auto">
         <Link to="/" className="flex items-center">
           <img src={movie} alt="About Movie" className="w-10" />

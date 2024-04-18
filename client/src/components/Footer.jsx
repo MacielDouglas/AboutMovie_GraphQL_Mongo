@@ -12,7 +12,9 @@ export default function Footer() {
             className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold flex items-baseline"
           >
             <img className="w-7" src={movie} alt="image logo" />
-            <span className="px-3 mr-1 py-1  text-slate-200">About Movie</span>
+            <span className="px-3 mr-1 py-1  text-slate-200 font-nothing_you text-2xl">
+              About Movie
+            </span>
           </Link>
         </div>
 

@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <div className="py-20 px-4 max-w-6xl mx-auto mb-32">
-      <h1 className="text-7xl text-center font-bold mb-10 text-cor_button font-lobster text-slate-400">
+      <h1 className="text-7xl text-center font-bold mb-10 text-cor_button font-nothing_you text-slate-400">
         About Movie
       </h1>
       <div className="text-xl flex flex-col gap-6 text-slate-300">

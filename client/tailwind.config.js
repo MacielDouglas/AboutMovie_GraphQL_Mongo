@@ -17,7 +17,7 @@ module.exports = {
       fontFamily: {
         roboto: ["Roboto Flex", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
-        lobster: ["Lobster", "sans-serif"],
+        nothing_you: ["Nothing You Could Do", "cursive"],
       },
     },
   },
